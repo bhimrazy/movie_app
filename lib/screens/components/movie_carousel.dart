@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/constants.dart';
 import 'package:movie_app/models/movie.dart';
 import 'package:movie_app/screens/components/movie_card.dart';
+import 'dart:math' as math;
 
 class MovieCarousel extends StatefulWidget {
   @override
@@ -15,7 +16,10 @@ class _MovieCarouselState extends State<MovieCarousel> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
+    _pageController = PageController(
+      viewportFraction: 0.8,
+      initialPage: initialPage,
+    );
   }
 
   @override
@@ -31,9 +35,22 @@ class _MovieCarouselState extends State<MovieCarousel> {
       child: AspectRatio(
           aspectRatio: 0.85,
           child: PageView.builder(
+              controller: _pageController,
               itemCount: movies.length,
-              itemBuilder: (context, index) =>
-                  MovieCard(movie: movies[index]))),
+              itemBuilder: (context, index) => buildMovieSlider(index))),
     );
   }
+
+  Widget buildMovieSlider(int index) => AnimatedBuilder(
+        animation: _pageController,
+        builder: (context, child) {
+          double value = 0;
+          if (_pageController.position.haveDimensions) {
+            value = index - _pageController.page;
+            value = (value * 0.038).clamp(-1, 1);
+          }
+          return Transform.rotate(
+              angle: math.pi * value, child: MovieCard(movie: movies[index]));
+        },
+      );
 }
