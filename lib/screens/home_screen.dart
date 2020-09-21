@@ -16,7 +16,14 @@ class HomeScreen extends StatelessWidget {
   AppBar buildAppBar() {
     return AppBar(
       backgroundColor: Colors.white,
-      elevation: 0,
+      elevation: 0.8,
+      title: Container(
+        alignment: Alignment.center,
+        child: Text(
+          "Movie App",
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
       leading: IconButton(
           padding: EdgeInsets.only(left: kDefaultPadding),
           icon: SvgPicture.asset("assets/icons/menu.svg"),

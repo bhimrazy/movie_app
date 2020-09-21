@@ -16,9 +16,10 @@ class Genres extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
       height: 36,
       child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: genres.length,
-          itemBuilder: (context, index) => GenreCard(genre: genres[index])),
+        scrollDirection: Axis.horizontal,
+        itemCount: genres.length,
+        itemBuilder: (context, index) => GenreCard(genre: genres[index]),
+      ),
     );
   }
 }
