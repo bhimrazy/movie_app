@@ -3,7 +3,13 @@ import 'package:movie_app/constants.dart';
 import 'package:movie_app/screens/components/genre_card.dart';
 
 class Genres extends StatelessWidget {
-  List<String> genres = ["Action", "Crime", "Comedy", "Horror", "Animation"];
+  final List<String> genres = [
+    "Action",
+    "Crime",
+    "Comedy",
+    "Horror",
+    "Animation"
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
